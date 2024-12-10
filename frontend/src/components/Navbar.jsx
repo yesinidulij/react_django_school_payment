@@ -10,20 +10,19 @@ import { REFRESH_TOKEN, ACCESS_TOKEN } from "../constants";
 import { useState, useEffect } from "react";
 function Navbar() {
  
-    const refreshToken = localStorage.getItem(REFRESH_TOKEN);
-    try {
-        const res = api.post("/api/token/refresh/", {
-            refresh: refreshToken,
-        });
-        if (res.status === 200) {
-          
-        } else {
-            setIsAuthorized(false)
-        }
-    } catch (error) {
-        console.log(error);
-       
-    }
+  var name =  "Login";
+  const refreshToken = localStorage.getItem(REFRESH_TOKEN);
+      try {
+          const res = api.post("/api/token/refresh/", {
+              refresh: refreshToken,
+          });
+          if (res.status === 200) {
+             name="kefe";
+          }
+      } catch (error) {
+          console.log(error);
+      }
+
 
   return (
     <div>
@@ -37,7 +36,7 @@ function Navbar() {
             <button type="button" className="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
               <span className="navbar-toggler-icon"></span>
             </button>
-            <Link to="/signup" className="btn btn-primary rounded-pill px-3 d-none d-lg-block">Sign Up<i className="fa fa-arrow-right ms-3"></i></Link>
+            <Link to="/login" className="btn btn-primary rounded-pill px-3 d-none d-lg-block">Login<i className="fa fa-arrow-right ms-3"></i></Link>
           </div>
         </nav>
       </>

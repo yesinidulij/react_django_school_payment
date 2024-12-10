@@ -1,12 +1,12 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
-from .models import SystemUser,payment
+from .models import SystemUser,payment,Student
 
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ["id","username", "password"]
+        fields = ["id","username","first_name","last_name","email" ,"password"]
         extra_kwargs = {"password": {"write_only": True}}
 
     def create(self, validated_data):
@@ -18,7 +18,7 @@ class SystemUserSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = SystemUser
-        fields = ("id","user",'first_name', 'last_name', 'mobile', 'email', 'gender')
+        fields = ("id",'username','password','first_name', 'last_name', 'mobile', 'email', 'gender')
 
     def create(self, validated_data):
         print(validated_data)
@@ -29,3 +29,10 @@ class paymentSerializer(serializers.ModelSerializer):
      class Meta:
         model = payment
         fields = ["id", "customer_name", "email","phone", "amount","transation_reference","public_key"]
+
+class StudentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Student
+        fields = '__all__'
+
+

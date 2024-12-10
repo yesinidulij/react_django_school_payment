@@ -8,6 +8,11 @@ import Navbar from "./components/Navbar"
 import PaymentForm from "./pages/PaymentForm"
 import Payment from "./components/Payment"
 import Home from "./pages/Home"
+import AdminDashboard from "./components/AdminDashboard"
+import StudentList from "./components/StudentList"
+import UserDashboard from "./components/UserDashboard"
+import Hello from "./components/Hello"
+import UserProfile from "./pages/UserProfile"
 
 function Logout() {
   localStorage.clear()
@@ -22,7 +27,6 @@ function RegisterAndLogout() {
 function App() {
   return (
     <BrowserRouter>
-    <Navbar/>
       <Routes>
       <Route
           path="pay/"
@@ -33,22 +37,27 @@ function App() {
           }
         />
         <Route
-          path="payments/"
+          path="hello/"
           element={
             <ProtectedRoute>
-            <Payment/>
+            <Hello/>
             </ProtectedRoute>
           }
         />
         <Route
-          path=""
+          path="/user"
           element={
             <ProtectedRoute>
-            <Home/>
+           <UserDashboard/>
             </ProtectedRoute>
           }
         />
         <Route path="login/" element={<Login />} />
+        <Route path="" element={<Home />} />
+
+        <Route path="admin/" element={<AdminDashboard />} />
+        <Route path="admin/students/" element={<StudentList />} />
+
         <Route path="logout/" element={<Logout />} />
         <Route path="signup/" element={<RegisterAndLogout />} />
         <Route path="*" element={<NotFound />}></Route>

@@ -1,10 +1,14 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import Pay from '../components/Pay'
 import "../styles/css/style.css"
 import "../styles/lib/animate/animate.min.css" 
 import "../styles/lib/owlcarousel/assets/owl.carousel.min.css"
 import "../styles/css/bootstrap.min.css"
 import tx_ref from '../components/tx_ref'
+import UserNavbar from '../components/UserNavbar'
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import api from "../api"
 function PaymentForm() {
     const [fname,setFname]=useState("");
     const [lname,setLname]=useState("");
@@ -13,10 +17,21 @@ function PaymentForm() {
     const [amount,setAmount]=useState(50);
     
     const public_key="CHAPUBK_TEST-scHmP8tNLVo7LkOGEd3XQIxmVizGy4mo"
+    const [students, setStudents] = useState([]);
+    const [studentCount, setStudentCount] = useState(0); // New state for count
   
+    const fetchStudents = async () => {
+      const result = await api.get('api/students/');
+      setStudents(result.data);
+    }
+  
+    useEffect(() => {
+      fetchStudents();
+    }, []);
 
       return (
         <div>
+            <UserNavbar/>
             <>
             <div className="container-xxl py-5">
                 <div className="container">
@@ -44,6 +59,26 @@ function PaymentForm() {
                                                     <label htmlFor="lname">Last Name</label>
                                                 </div>
                                             </div>
+
+                                            <div className="col-sm-12">
+                                            <div className="form-floating">
+                                            <Dropdown>
+      <Dropdown.Toggle variant="light" id="dropdown-basic">
+        select for whom you are paying for
+      </Dropdown.Toggle>
+
+      <Dropdown.Menu>
+      {
+          students.map((student, index) => (
+        <Dropdown.Item href="#/action-1">{student.student_id} {student.first_name} {student.last_name} {student.email}</Dropdown.Item>
+
+    ))}
+      </Dropdown.Menu>
+    </Dropdown>
+
+</div>
+</div>
+
                                             <div className="col-sm-6">
                                                 <div className="form-floating">
                                                     <input onChange={(e)=>{

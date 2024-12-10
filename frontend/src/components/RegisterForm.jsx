@@ -17,14 +17,12 @@ function RegisterForm({ route, method }) {
     const [gender, setGender] = useState("");
     const navigate = useNavigate();
 
-    const name = method === "login" ? "Login" : "SignUp";
-
+   
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await api.post(route, {username,password})
-            var user="<User:"+username+">"
-            res = await api.post("/api/systemuser/register/", {first_name,last_name,mobile,email,gender})
+            
+           var res = await api.post(route, {username,password,first_name,last_name,mobile,email,gender})
             alert("sign up successful")
                 navigate("/login")
             }
@@ -111,7 +109,7 @@ function RegisterForm({ route, method }) {
                                    <br />
                                   
                                     <div className="col-6">
-                                    <button className="btn btn-primary w-100 py-3" type="submit">{name}</button>
+                                    <button className="btn btn-primary w-100 py-3" type="submit">register</button>
                                     Already have an account? <Link to="/login" >signin</Link>
 
                                     </div>

@@ -11,7 +11,7 @@ import "https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.mi
 import coursel from "../styles/img/carousel.jpg"
 import coursel2 from "../styles/img/carousel2.jpg"
 import '../styles/css/Coursel.css'
-import quens2 from '../styles/img/file.png'
+import quens2 from '../styles/img/logo3.jpg'
 function Coursel() {
   return (
     <div>

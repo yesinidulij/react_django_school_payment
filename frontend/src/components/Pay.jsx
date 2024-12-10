@@ -7,6 +7,8 @@ import "../styles/css/bootstrap.min.css"
 import Payment from './Payment'
 function Pay({fname,lname,email,phone,amount,tx_ref,public_key}) {
 
+
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     var customer_name=fname+" "+lname;
@@ -34,7 +36,7 @@ function Pay({fname,lname,email,phone,amount,tx_ref,public_key}) {
     <input type="hidden" name="description" value="Paying with Confidence with cha" />
     <input type="hidden" name="logo" value="https://chapa.link/asset/images/chapa_swirl.svg" />
     <input type="hidden" name="callback_url" value="https://example.com/callbackurl" />
-    <input type="hidden" name="return_url" value="http://localhost:5173" />
+    <input type="hidden" name="return_url" value="" />
     <input type="hidden" name="meta[title]" value="test" />
     <button className="btn btn-primary w-100 py-3" type="submit">Pay Now</button>
     </form>

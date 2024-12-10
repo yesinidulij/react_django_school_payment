@@ -1,12 +1,21 @@
 from django.db import models
 
 # Create your models here.
-from django.contrib.auth.models import User
 
-class SystemUser(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+class Student(models.Model):
+    student_id = models.AutoField(primary_key=True)
     first_name=models.CharField(max_length=50,null=True)
     last_name=models.CharField(max_length=50,null=True)
+    email=models.CharField(max_length=50,null=True)
+    phone=models.CharField(max_length=15,null=True)
+    
+    
+class SystemUser(models.Model):
+    username=models.CharField(max_length=50,null=True)
+    password=models.CharField(max_length=50,null=True)
+    first_name=models.CharField(max_length=50,null=True)
+    last_name=models.CharField(max_length=50,null=True)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
     mobile=models.CharField(max_length=50,null=True)
     email=models.CharField(max_length=50,null=True)
     gender=models.CharField(max_length=50,null=True)
@@ -14,15 +23,11 @@ class SystemUser(models.Model):
 
    
 class payment(models.Model):
-    customer_name=models.CharField(max_length=100,null=True)
-    email=models.CharField(max_length=50,null=True)
-    phone=models.CharField(max_length=15,null=True)
+    customer=models.ForeignKey(SystemUser,on_delete=models.CASCADE)
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
     amount=models.IntegerField()
     transation_reference=models.CharField(max_length=50,null=True)
     public_key=models.CharField(max_length=1000,null=True)
 
-class Students(models.Model):
-    first_name=models.CharField(max_length=50,null=True)
-    last_name=models.CharField(max_length=50,null=True)
-    email=models.CharField(max_length=50,null=True)
-    phone=models.CharField(max_length=15,null=True)
+
+
