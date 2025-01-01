@@ -10,18 +10,6 @@ import { REFRESH_TOKEN, ACCESS_TOKEN } from "../constants";
 import { useState, useEffect } from "react";
 function Navbar() {
  
-  var name =  "Login";
-  const refreshToken = localStorage.getItem(REFRESH_TOKEN);
-      try {
-          const res = api.post("/api/token/refresh/", {
-              refresh: refreshToken,
-          });
-          if (res.status === 200) {
-             name="kefe";
-          }
-      } catch (error) {
-          console.log(error);
-      }
 
 
   return (

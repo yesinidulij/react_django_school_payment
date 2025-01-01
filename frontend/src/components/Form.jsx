@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import api from "../api";
 import { useNavigate } from "react-router-dom";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../constants";
@@ -7,21 +7,43 @@ import "../styles/lib/animate/animate.min.css"
 import "../styles/lib/owlcarousel/assets/owl.carousel.min.css"
 import "../styles/css/bootstrap.min.css"
 function Form({ route, method }) {
-    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
-
+    const [users,setUsers]=useState([])
+    const fetchUsers = async () => {
+        const result = await api.get('api/users/');
+        setUsers(result.data);
+      };
+    
+      useEffect(() => {
+        fetchUsers();
+      }, []);
+     
+    
     const name = method === "login" ? "Login" : "Register";
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+       
         try {
-            const res = await api.post(route, { username, password })
+            const res = await api.post(route, { email, password })
             if (method === "login") {
                 localStorage.setItem(ACCESS_TOKEN, res.data.access);
                 localStorage.setItem(REFRESH_TOKEN, res.data.refresh);
+                const user = users.find(user => user.email.toLowerCase() == email.toLowerCase()); 
+                if (!user) {
+                    // Handle the case where the user is not found (e.g., display an error message)
+                    alert("User not found.");
+                    return; 
+                }
+                console.log(user.email)
+            if (user.email == "admin@gmail.com") {
+                navigate("/admin"); // Redirect to staff dashboard
+            }
+            else{
                 navigate("/user")
+            }
             } else {
                 navigate("/login")
             }
@@ -43,9 +65,9 @@ function Form({ route, method }) {
                                     <div className="col-sm-6">
                                         <div className="form-floating">
                                             <input onChange={(e)=>{
-                                                setUsername(e.target.value)
-                                            }} type="text" className="form-control border-0" id="username" placeholder="username" value={username}/>
-                                            <label htmlFor="username">username</label>
+                                                setEmail(e.target.value)
+                                            }} type="email" className="form-control border-0" id="email" placeholder="email" value={email}/>
+                                            <label htmlFor="email">email</label>
                                         </div>
                                     </div>
                                     <div className="col-sm-6">
@@ -74,5 +96,4 @@ function Form({ route, method }) {
     </div>
     );
 }
-
 export default Form

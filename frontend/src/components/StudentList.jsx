@@ -3,12 +3,13 @@ import Table from 'react-bootstrap/Table';
 import { useState,useEffect } from 'react';
 import api from '../api';
 import Navbar from './Navbar';
+import AdminNavbar from './AdminNavbar';
 function StudentList() {
     const [students, setStudents] = useState([]);
   const [studentCount, setStudentCount] = useState(0); // New state for count
 
   const fetchStudents = async () => {
-    const result = await api.get('api/students/');
+    const result = await api.get('api/users/');
     setStudents(result.data);
   }
 
@@ -17,7 +18,7 @@ function StudentList() {
   }, []);
     return (
        <div>
-        <Navbar/>
+        <AdminNavbar/>
         <br />
         <br />
          <Table striped bordered hover>
@@ -36,7 +37,7 @@ function StudentList() {
 
           <tbody>
             <tr>
-              <td>{student.student_id}</td>
+              <td>{student.id}</td>
               <td>{student.first_name}</td>
               <td>{student.last_name}</td>
               <td>{student.email}</td>

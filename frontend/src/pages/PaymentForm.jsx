@@ -4,12 +4,17 @@ import "../styles/css/style.css"
 import "../styles/lib/animate/animate.min.css" 
 import "../styles/lib/owlcarousel/assets/owl.carousel.min.css"
 import "../styles/css/bootstrap.min.css"
-import tx_ref from '../components/tx_ref'
 import UserNavbar from '../components/UserNavbar'
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import api from "../api"
+const max=1000000;
+const min=1000;
+const randomNum = Math.floor(Math.random() * (max - min + 1)) + min;
+const tx_ref=`kefiyalew-tx-${randomNum}`;
 function PaymentForm() {
+  
+
     const [fname,setFname]=useState("");
     const [lname,setLname]=useState("");
     const [email,setEmail]=useState("");
@@ -21,7 +26,7 @@ function PaymentForm() {
     const [studentCount, setStudentCount] = useState(0); // New state for count
   
     const fetchStudents = async () => {
-      const result = await api.get('api/students/');
+    const result = await api.get('api/students/');
       setStudents(result.data);
     }
   

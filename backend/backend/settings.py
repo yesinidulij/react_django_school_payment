@@ -29,6 +29,12 @@ SECRET_KEY = "django-insecure-nma=xi6x2p-crjg^ifqqkapyu1qjd0l=+wn)-rijk_o%$!k3w_
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'yesinidulij123@gmail.com'
+EMAIL_HOST_PASSWORD = "tuoa uaic ucdw gbmo"
 
 ALLOWED_HOSTS = ["*"]
 
@@ -149,3 +155,11 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWS_CREDENTIALS = True
+
+CHAPA_SECRET = "CHASECK_TEST-Dr5m3aqJxu4Tlr7X756jzTXgJoUyrXFb"
+CHAPA_API_URL = "https://api.chapa.co/v1/hosted/pay/"
+CHAPA_WEBHOOK_URL = "http://127.0.0.1:8000/api/chapa/"
+CHAPA_API_VERSION = 'v1'
+CHAPA_TRANSACTION_MODEL ='api.ChapaTransaction'
+
+AUTH_USER_MODEL = "api.User"

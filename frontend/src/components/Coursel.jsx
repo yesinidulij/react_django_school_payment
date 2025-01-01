@@ -11,17 +11,22 @@ import "https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.mi
 import coursel from "../styles/img/carousel.jpg"
 import coursel2 from "../styles/img/carousel2.jpg"
 import '../styles/css/Coursel.css'
-import quens2 from '../styles/img/logo3.jpg'
+import quens2 from '../styles/img/college1.jpg'
 function Coursel() {
   return (
     <div>
       <div className='hero-container'>
         <img src={quens2} alt="Queens College" /> 
-        <div className="text-container"> 
+        
+      </div>
+      <div className="text-container"> 
           <h1>Queens College</h1>
           <p>What are you waiting for?</p>
+
+          
         </div>
-      </div>
+     
+
     </div>
   );
 }

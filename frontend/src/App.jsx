@@ -13,7 +13,10 @@ import StudentList from "./components/StudentList"
 import UserDashboard from "./components/UserDashboard"
 import Hello from "./components/Hello"
 import UserProfile from "./pages/UserProfile"
-
+import Pay from "./components/Pay"
+import PaymentSuccees from "./components/PaymentSuccees"
+import AllPayments from "./components/AllPayments"
+import AdminFeeDetail from "./components/AdminFeeDetail"
 function Logout() {
   localStorage.clear()
   return <Navigate to="/login" />
@@ -32,15 +35,23 @@ function App() {
           path="pay/"
           element={
             <ProtectedRoute>
-            <PaymentForm/>
+            <Pay/>
             </ProtectedRoute>
           }
         />
         <Route
-          path="hello/"
+          path="payments/"
           element={
             <ProtectedRoute>
-            <Hello/>
+            <Payment/>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="allpayments/"
+          element={
+            <ProtectedRoute>
+            <AllPayments/>
             </ProtectedRoute>
           }
         />
@@ -54,11 +65,21 @@ function App() {
         />
         <Route path="login/" element={<Login />} />
         <Route path="" element={<Home />} />
-
-        <Route path="admin/" element={<AdminDashboard />} />
+        <Route path="admin/" element={
+            <ProtectedRoute>
+           <AdminDashboard/>
+            </ProtectedRoute>
+          } />
+          <Route path="allusers/" element={
+            <ProtectedRoute>
+           <StudentList/>
+            </ProtectedRoute>
+          } />
         <Route path="admin/students/" element={<StudentList />} />
 
         <Route path="logout/" element={<Logout />} />
+        <Route path="/:id/" element={< AdminFeeDetail/>} />
+
         <Route path="signup/" element={<RegisterAndLogout />} />
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
