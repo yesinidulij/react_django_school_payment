@@ -27,7 +27,7 @@ function Pay({fname,lname,email,title,description,fee_pay,amount,tx_ref,public_k
     <input type="hidden" name="callback_url" value="http://127.0.0.1:8000/api/chapa/" />
     <input type="hidden" name="return_url" value="http://localhost:5173/user"  />
     <input type="hidden" name="meta[title]" value="test" />
-    <button className="btn btn-primary w-100 py-3" type="submit">Pay Now</button>
+    <button className="btn btn-primary w-40 margin-10" type="submit">Pay Now</button>
     </form>
     </></div>
   )

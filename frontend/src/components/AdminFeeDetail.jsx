@@ -2,6 +2,7 @@ import React from 'react'
 import { useParams } from 'react-router-dom';
 import { useState,useEffect } from 'react';
 import api from '../api';
+import AdminNavbar from './AdminNavbar';
 function AdminFeeDetail() {
   const { id } = useParams();
   const [payments, setPayments] = useState([]);
@@ -18,6 +19,7 @@ function AdminFeeDetail() {
   const matchingUser= (studentid)=>{
     const matchingUser = users.find(user => user.id == studentid);
     const studentName = matchingUser ? `${matchingUser.first_name} ${matchingUser.last_name}` : 'Student Not Found';
+    console.log(studentName)
    return studentName;
   
   }
@@ -28,10 +30,11 @@ function AdminFeeDetail() {
 
   return (
     <div>
+      <AdminNavbar/>
       <table>
         <thead>
           <tr>
-            <th>Student ID</th>
+            <th>Student Name</th>
             <th>Amount Paid</th>
             <th>Payment Date</th>
             {/* Add more headers as needed for your payment information */}

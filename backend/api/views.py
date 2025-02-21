@@ -104,7 +104,7 @@ def payment_detail(request):
 def paid_student(request):
     feeid=request.query_params.get("feeid")
     fee=Fee.objects.get(id=feeid)
-    paymentvalue = payment.objects.filter(fee=fee)
+    paymentvalue = payment.objects.filter(fee=fee,student=request.user)
     serialzer=paymentSerializer(paymentvalue,many=True)
     return Response(serialzer.data)
 
